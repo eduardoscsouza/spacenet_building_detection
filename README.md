@@ -16,7 +16,7 @@ which extract buildings from [SpaceNet](https://spacenetchallenge.github.io/) sa
 ### 0. Clone this repo
 
 ```
-$ PROJ_DIR=~/spacenet_building_detection  # assuming you clone this repo to your home directory
+$ PROJ_DIR=$(pwd)/spacenet_building_detection  # assuming you clone this repo to your current directory
 
 $ git clone --recursive https://github.com/motokimura/spacenet_building_detection.git $PROJ_DIR
 ```
@@ -31,7 +31,7 @@ to download the data from AWS S3.
 $ cd $PROJ_DIR/data
 
 # Download processed 200mx200m tiles of AOI 1 (3.4 GB) with associated building footprints
-$ aws s3api get-object --bucket spacenet-dataset --key AOI_1_Rio/processedData/processedBuildingLabels.tar.gz --request-payer requester processedBuildingLabels.tar.gz
+$ aws s3 cp s3://spacenet-dataset/AOIs/AOI_1_Rio/processedData/processedBuildingLabels.tar.gz processedBuildingLabels.tar.gz
 
 $ tar -xvf processedBuildingLabels.tar.gz
 $ cd processedBuildingLabels
@@ -42,8 +42,7 @@ $ tar -xvf geojson.tar.gz
 
 # Download the Source Imagery Mosaic (3-band = 2.3 GB and 8-band = 6.5 GB)
 $ cd $PROJ_DIR/data
-$ aws s3api get-object --bucket spacenet-dataset --key AOI_1_Rio/srcData/rasterData/3-Band.tar.gz --request-payer requester 3-Band.tar.gz
-$ tar -xvf 3-Band.tar.gz
+$ aws s3 sync s3://spacenet-dataset/AOIs/AOI_1_Rio/srcData/mosaic_3band 3-Band
 ```
 
 You can find more details [here](https://spacenetchallenge.github.io/AOI_Lists/AOI_1_Rio.html).
