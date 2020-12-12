@@ -42,7 +42,8 @@ $ tar -xvf geojson.tar.gz
 
 # Download the Source Imagery Mosaic (3-band = 2.3 GB and 8-band = 6.5 GB)
 $ cd $PROJ_DIR/data
-$ aws s3 sync s3://spacenet-dataset/AOIs/AOI_1_Rio/srcData/mosaic_3band 3-Band
+$ aws s3 cp s3://spacenet-dataset/spacenet/SN1_buildings/tarballs/SN1_buildings_train_AOI_1_Rio_3band.tar.gz 3-Band.tar.gz
+$ tar -xvf 3-Band.tar.gz
 ```
 
 You can find more details [here](https://spacenetchallenge.github.io/AOI_Lists/AOI_1_Rio.html).
